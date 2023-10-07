@@ -1,47 +1,50 @@
 
 const $target = document.querySelector('#app');
 
-function ToggleButton( { $target , text, clickCount }) {
-
+function ToggleButton( { $target , text, onClick }) {
     const $button = document.createElement('button');
-    let isInit = false;
-
+    $target.appendChild($button);
+    let clickCount = 0;
+    
     this.render = () => {
-        $button.textContent = `${text} : ${clickCount}번 클릭`;
+        $button.textContent = text;
+        $button.addEventListener('click', () => {
+            clickCount++
+            if ($button.style.textDecoration == 'line-through') {
+                $button.style.textDecoration = 'none';
+            } else {
+                $button.style.textDecoration = 'line-through';
+            }
 
-        if (!isInit) {
-            $target.appendChild($button);
-
-            $button.addEventListener('click', ()=> {
-                if ($button.style.color === 'black') {
-                    $button.style.color = 'red';
+            if (onClick) {
+                onClick(clickCount);
+            }
+        })
         
-                } else {
-                    $button.style.color = 'black';
-                }
-                clickCount++
-                $button.textContent = `${text} : ${clickCount}번 클릭`;
-                if (clickCount%3 === 0) {
-                    alert('세 번째 클릭');
-                } 
-
-            })
-            isInit = true;
-        }
     }
+        
 
     this.render();
+
 }
 
 
 new ToggleButton( {
     $target : $target,
     text : 'button1',
-    clickCount : 0,
+    onClick : (clickCount) => {
+        if (clickCount%3 === 0) {
+            alert('3번째 클릭');
+        }
+    },
 } );
 
 new ToggleButton( {
     $target : $target,
     text : 'button2',
-    clickCount : 0,
+    onClick : (clickCount) => {
+        if (clickCount%2 === 0) {
+            alert('2번째 클릭')
+        }
+    }
 })
