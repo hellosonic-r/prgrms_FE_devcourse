@@ -13,9 +13,20 @@ function TodoForm({ $target , onSubmit}) {
         if (!isInit) {
             $form.addEventListener('submit', e => {
                 e.preventDefault() // 태그의 기본 동작을 off 함 (form의 새로고침 방지)
-                const text = $form.querySelector('input[name=todo]').value;
 
-                onSubmit(text); // onSubmit에는 관심이 없고 호출만 해줄게
+                const $todo = $form.querySelector('input[name=todo]');
+                const text = $todo.value;
+
+                if (text.length > 1) {
+                    $todo.value = "";
+                    onSubmit(text);
+                }
+                else {
+                    alert('두 글자 이상을 입력해주세요');
+                    $todo.value = "";
+                }
+
+                // onSubmit(text); // onSubmit에는 관심이 없고 호출만 해줄게
             })
             isInit = true;
         }

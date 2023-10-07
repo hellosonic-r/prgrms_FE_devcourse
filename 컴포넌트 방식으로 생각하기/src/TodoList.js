@@ -7,6 +7,10 @@ function TodoList( { $target, initialState }) {
     $target.appendChild($todoList);
  
     this.state = initialState;
+    this.setState = nextState => {
+        this.state = nextState;
+        this.render();
+    }
     this.render = () => {
         // this.state = [{ text: 'js 공부}, {text : '....'}]
         $todoList.innerHTML = `

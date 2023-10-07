@@ -12,16 +12,24 @@ const $app = document.querySelector('.app');
 new TodoForm( {
     $target : $app,
     onSubmit: (text) => {
-        alert(text);
+        const nextState = [...todoList.state, { text }]
+        todoList.setState(nextState);
     }
 })
 
 
-new TodoList( {
+const todoList = new TodoList( {
     $target : $app,
     initialState : data,
 })
 
+// setTimeout(() => {
+//     todoList.setState([
+//         {
+//             text : 'Hello JS!'
+//         }
+//     ])
+// }, 5000)
 
 const data1 = [
     {
