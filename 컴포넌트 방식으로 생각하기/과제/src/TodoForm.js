@@ -1,4 +1,4 @@
-function TodoForm( {$target, onSubmit}) {
+function TodoForm( {$target, onSubmit, checkTotalCountAtInsert}) {
     const $form = document.createElement('form');
 
     $target.appendChild($form);
@@ -17,6 +17,7 @@ function TodoForm( {$target, onSubmit}) {
             // window.localStorage.setItem('text', JSON.stringify([...this.state, {text, isCompleted: false}]));
             // this.state = JSON.parse(window.localStorage.getItem('text'));
             onSubmit(text);
+            checkTotalCountAtInsert();
 
 
         } else {
