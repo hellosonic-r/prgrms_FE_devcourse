@@ -44,6 +44,8 @@ console.log(cnt.get(john)); // 123
   - <code>map.keys()</code> : 각 요소의 키를 모은 이터러블(반복가능한) 객체 반환
   - <code>map.values()</code> : 각 요소의 값을 모은 이터러블 객체 반환
   - <code>map.entries()</code> : [키, 값] 이터러블 객체 반환 ( for of )
+
+
 ```jsx
 let recipeMap = new Map([
     ['cucumber', 500],
@@ -72,7 +74,11 @@ for (let [key, value] of recipeMap.entries()){
     console.log(value);
 }
 ```
+
+
 - 맵은 배열과 유사하게 <code>forEach</code> 지원
+
+
 ```jsx
 recipeMap.forEach( (value, key, map) => {
     console.log(`${key} : ${value}`); 
@@ -85,6 +91,8 @@ recipeMap.forEach( (value, key, map) => {
 
 ## ✅ 객체를 맵으로 바꾸기
 - Object.entries(obj) 활용 
+
+
 ```jsx
 const obj = {
     name: 'Hwang',
@@ -96,6 +104,7 @@ console.log(arr) // type은 Object임
 ```
 
 ```jsx
+
 let obj = {
     name : 'john',
     age : 30,
@@ -147,6 +156,8 @@ let obj = Object.fromEntries(map.entries()); // 맵을 일반 객체로 변환
 
 ## ✅ 셋의 값에 반복 작업하기
 - <code>for..of</code> 나 <code>forEach</code> 를 사용하여 셋의 값을 대상으로 반복 작업 수행
+
+
 ```jsx
 let set = new Set(["oranges", "apples", "bananas"]);
 
@@ -158,6 +169,8 @@ set.forEach((value, valueAgain, set) => {
     alert(value);
 });
 ``` 
+
+
 - <code>set.keys()</code> : 셋 내의 모든 값을 포함하는 이터러블 객체 반환
 - <code>set.values()</code> : <code>set.keys()</code> 와 동일한 작업. <code>맵</code> 과의 호환성을 위한 메서드
 - <code>set.entries()</code> : <code>[ value, value ]</code> 배열을 포함하는 이터러블 객체를 반환. <code>맵</code> 과의 호환성 위한 메서드

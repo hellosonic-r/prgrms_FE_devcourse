@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container"></div>
+    <a class="LinkItem" href="/product-list">product list</a>
+    <a class="LinkItem" href="/article-list">article list</a>
+    <script>
+        
+
+        function route() {
+            const { pathname } = location; // 현재 pathname만 뽑아냄 
+            const $container = document.querySelector('#container');
+
+            // 현재 pathname에 따라 innerHTML로 다른 화면 렌더링
+            if (pathname === '/') {
+                $container.innerHTML = '<h1>Home</h1>';
+            } else if (pathname === '/product-list') {
+                $container.innerHTML = '<h1>상품 목록</h1>';
+            } else if (pathname === '/article-list') {
+                $container.innerHTML = '<h1>게시글 목록</h1>';
+            }
+        }
+
+        route();
+
+        // 버튼에 클릭이 발생했을 경우
+        window.addEventListener('click', e => {
+            // 그 버튼의 class="LinkItem" 이라면
+            if (e.target.className === 'LinkItem') {
+                e.preventDefault();
+
+                // href 링크의 path만 뽑는다.
+                const { href } = e.target;
+                const path = href.replace(window.location.origin, '');
+
+                // 주소만 변경
+                history.pushState(null, null, path);
+                // 라우트
+                route();
+            }
+        })
+
+        // 뒤로가기 이벤트 발생시에 route()
+        window.addEventListener('popstate', () => {
+            route();
+        })
+    </script>
+</body>
+
+</html>

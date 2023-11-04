@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>
+            practice
+        </title>
+    </head>
+    <body>
+        <script>
+            // fetch('https://kdt-frontend.programmers.co.kr/todos')
+            //     .then(response => {
+            //         return response.json();
+            //     })
+            //     .then(data => {
+            //         console.log(data);
+            //     })
+
+
+
+            // fetch 는 HTTP error (404에러 등)이 발생해도 reject되지 않고
+            // 네트워크 에러나 요청이 완료되지 못한 경우에만 reject되기 때문에 
+            // response의 status code나 Ok를 체크해주는 것이 좋음
+            
+            fetch('https://kdt-frontend.programmers.co.kr/undefined-api')
+                .then(res => {
+                    if (res.ok) { // ok로 확인
+                        return res.json();
+                    }
+                    throw new Error(`Status : ${res.status} 요청 처리하지 못했어요`);
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(e => {
+                    document.querySelector('body').innerHTML = e.message;
+                }) 
+
+                
+        </script>
+    </body>
+</html>
