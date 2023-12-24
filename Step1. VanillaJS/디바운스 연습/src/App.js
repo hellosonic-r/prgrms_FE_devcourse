@@ -19,16 +19,6 @@ export default function App({ $target }) {
       } else {
         postEditPage.setState(getPost);
       }
-
-      // if (localData && localData.tempSaveDate > getPost.updated_at) {
-      //   if (confirm("불러올까요?")) {
-      //     postEditPage.setState(localData);
-      //   } else {
-      //     postEditPage.setState(getPost);
-      //   }
-      // }
-
-      // postEditPage.setState(getPost);
     },
   });
   const postEditPage = new PostEditPage({
