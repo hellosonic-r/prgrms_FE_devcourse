@@ -46,4 +46,4 @@ const TodoProvider = ({ children }: IChildrenProps) => {
   );
 };
 
-export default TodoProvider;
+export { TodoContext, TodoProvider };
