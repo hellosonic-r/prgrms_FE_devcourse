@@ -1,5 +1,4 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldErrors, FieldValues } from 'react-hook-form';
 
 const FormExample = () => {
   const {
@@ -8,11 +7,18 @@ const FormExample = () => {
     formState: { errors },
   } = useForm();
 
+  const onValid = (data: FieldValues) => {
+    console.log('타당합니다', data);
+  };
+
+  const onInvalid = (errors: FieldErrors) => {
+    console.log(errors);
+  };
+
   return (
-    <form onSubmit={handleSubmit(() => console.log('제출'))}>
+    <form onSubmit={handleSubmit(onValid, onInvalid)}>
       <label htmlFor="email">이메일</label>
       <input
-        id="email"
         type="email"
         placeholder="test@email.com"
         {...register('email', {
@@ -24,12 +30,7 @@ const FormExample = () => {
         })}
       />
       <label htmlFor="password">비밀번호</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="********"
-        {...register('password')}
-      />
+      <input type="password" placeholder="********" {...register('password')} />
 
       <button type="submit">로그인</button>
       <span>{errors.email?.message as string}</span>
