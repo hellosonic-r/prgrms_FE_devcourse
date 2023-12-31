@@ -32,7 +32,7 @@ const FormExample = () => {
       />
 
       <button type="submit">로그인</button>
-      <span>{errors.email?.message}</span>
+      <span>{errors.email?.message as string}</span>
     </form>
   );
 };
