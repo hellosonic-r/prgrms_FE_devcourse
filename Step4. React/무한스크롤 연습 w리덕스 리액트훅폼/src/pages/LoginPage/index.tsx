@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, FieldValues, FieldErrors } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../store';
+import { userActions } from '../../store/reducers/userReducer';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPageWrapper = styled.div`
   display: flex;
@@ -19,9 +23,18 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'onChange' });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userInformation = useSelector((state: RootState) => state.user);
+  // console.log(userInformation);
+  useEffect(() => {
+    console.log(userInformation);
+  }, [userInformation]);
 
   const onValid = (data: FieldValues) => {
-    console.log('성공', data);
+    // console.log('성공', data);
+    dispatch(userActions.userSlice(data));
+    navigate('/home');
   };
   const onInvalid = (errors: FieldErrors) => {
     console.log('실패', errors);
