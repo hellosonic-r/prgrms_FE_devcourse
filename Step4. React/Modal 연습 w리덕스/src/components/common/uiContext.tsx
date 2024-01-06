@@ -70,5 +70,10 @@ const ModalUI = (...rest) => {
 };
 
 export const ManageUIContext = ({ children }) => {
-  return <ModalUI />;
+  return (
+    <>
+      <ModalUI />
+      {children}
+    </>
+  );
 };
