@@ -52,6 +52,7 @@ const ModalView: React.FC<{
 }> = ({ modalView, closeModal, props }) => {
   return (
     <Modal onClose={closeModal}>
+      {/* 여기에 모달 타입 */}
       {modalView === 'INIT_VIEW' && <TestModal />}
     </Modal>
   );
