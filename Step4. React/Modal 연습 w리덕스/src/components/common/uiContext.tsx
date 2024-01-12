@@ -28,7 +28,7 @@ export const useUI = () => {
   );
 
   const setModalView = useCallback(
-    (view) =>
+    (view: any) =>
       dispatch(modalActions.modalReducer({ type: 'SET_MODAL_VIEW', view })),
     [dispatch]
   );
